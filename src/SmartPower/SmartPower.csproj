@@ -18,10 +18,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="UserInterface\VIN\VinAndFloorPlanPage.xaml.cs">
-      <DependentUpon>VinAndFloorPlanPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Remove="UserInterface\Settings\SystemDiagnosticsDeviceReportPage.cs" />
     <Compile Remove="UserInterface\Settings\SystemDiagnosticsDeviceReportPage.xaml.cs" />
   </ItemGroup>
@@ -141,9 +137,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="UserInterface\ScanVin\ScanVinPage.xaml.cs">
-      <DependentUpon>ScanVinPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

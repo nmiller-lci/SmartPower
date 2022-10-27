@@ -10,8 +10,6 @@ using IDS.Portable.LogicalDevice;
 using IDS.UI.UserDialogs;
 using SmartPower.Services;
 using SmartPower.UserInterface.Pairing;
-using SmartPower.UserInterface.ScanVin;
-using SmartPower.UserInterface.VIN;
 using OneControl.Devices;
 using OneControl.Direct.IdsCanAccessoryBle;
 using OneControl.Direct.IdsCanAccessoryBle.AwningSensor;

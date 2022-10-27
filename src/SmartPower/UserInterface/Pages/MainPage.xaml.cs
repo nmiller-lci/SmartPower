@@ -1,5 +1,4 @@
 ﻿using PrismExtensions;
-using SmartPower.UserInterface.VIN;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -12,8 +12,6 @@ using IDS.Portable.BLE.Platforms.Shared.BleScanner;
 using IDS.Portable.Common;
 using IDS.Portable.LogicalDevice;
 using SmartPower.Services;
-using SmartPower.UserInterface.ScanVin;
-using SmartPower.UserInterface.VIN;
 using OneControl.Devices.AccessoryGateway;
 using OneControl.Devices.BatteryMonitor;
 using OneControl.Direct.IdsCanAccessoryBle.BatteryMonitor;
@@ -141,15 +139,6 @@ namespace SmartPower.UserInterface.Pairing
             if (PairDevices is null)
             {
                 PairDevices = new List<IPairableDeviceCell>();
-            }
-
-            if (parameters?.ContainsKey(VinAndFloorPlanViewModel.FloorPlanKey) == true)
-            {
-                SelectedFloorPlan = parameters[VinAndFloorPlanViewModel.FloorPlanKey].ToString();
-                Vin = parameters[ScanVinViewModel.VinParameterKey].ToString();
-
-                if (!String.IsNullOrEmpty(Vin))
-                    await GetDataAsync();
             }
 
             BleScannerService.Instance.Start(false);
