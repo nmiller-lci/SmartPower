@@ -1,0 +1,168 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+	<LangVersion>9</LangVersion>
+	<Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="UserInterface\VIN\VinAndFloorPlanPage.xaml.cs">
+      <DependentUpon>VinAndFloorPlanPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Remove="UserInterface\Settings\SystemDiagnosticsDeviceReportPage.cs" />
+    <Compile Remove="UserInterface\Settings\SystemDiagnosticsDeviceReportPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Roboto\Roboto-Black.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Light.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-Black.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-Bold.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-Italic.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-Light.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-Medium.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\Rubik\Rubik-Regular.ttf" />
+    <None Remove="Resources\Images\flashlight.svg" />
+    <None Remove="Resources\Lottie\spinner.json" />
+    <None Remove="Resources\Images\camera.svg" />
+    <None Remove="Resources\Sounds\scan.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="UserInterface\Settings\SystemDiagnosticsDeviceReportPage.xaml" />
+    <None Remove="Resources\Images\connected.svg" />
+    <EmbeddedResource Include="Resources\Images\connected.svg" />
+    <None Remove="Resources\Images\error.svg" />
+    <EmbeddedResource Include="Resources\Images\error.svg" />
+    <None Remove="Resources\Images\flashlightoff.svg" />
+    <EmbeddedResource Include="Resources\Images\flashlightoff.svg" />
+    <None Remove="Resources\Images\flashlighton.svg" />
+    <EmbeddedResource Include="Resources\Images\flashlighton.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Black.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-Black.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-BlackItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-MediumItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Rubik\Rubik-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Lottie\spinner.json" />
+    <EmbeddedResource Include="Assets\data.realm" />
+    <EmbeddedResource Include="Resources\Images\camera.svg" />
+    <EmbeddedResource Include="Resources\Sounds\scan.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
+    <PackageReference Include="IDS.Core" Version="4.0.*" />
+    <PackageReference Include="IDS.Core.IDS_CAN" Version="4.0.*" />
+    <PackageReference Include="IDS.Core.IDS_CAN.Descriptors" Version="4.0.*" />
+    <PackageReference Include="IDS.Plugin.BLE" Version="3.1.5" />
+    <PackageReference Include="ids.portable.common" Version="3.*" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+    <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
+    <PackageReference Include="PrismExtensions" Version="0.1.0.38525" />
+    <PackageReference Include="Realm" Version="10.11.2" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.6.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+    <PackageReference Include="Handlebars.Net" Version="1.9.5" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="3.1.0-beta2" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.1.0-beta2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ids.portable.ble\ids.portable.ble.csproj" />
+    <ProjectReference Include="..\..\ids.portable.can\IDS.Portable.CAN.csproj" />
+    <ProjectReference Include="..\..\ids.portable.devices\IDS.Portable.Devices.TPMS\IDS.Portable.Devices.TPMS.csproj" />
+    <ProjectReference Include="..\..\ids.portable.logicaldevices\IDS.Portable.LogicalDevices.csproj" />
+    <ProjectReference Include="..\..\ids.ui\src\ids.ui\ids.ui.csproj" />
+    <ProjectReference Include="..\..\onecontrol.devices\OneControl.Devices.csproj" />
+    <ProjectReference Include="..\..\onecontrol.direct.idscomm\OneControl.Direct.IdsCanAccessoryBle\OneControl.Direct.IdsCanAccessoryBle.csproj" />
+    <ProjectReference Include="..\..\onecontrol.direct.idscomm\OneControl.Direct.IdsCan\OneControl.Direct.IdsCan.csproj" />
+    <ProjectReference Include="..\..\onecontrol.direct.idscomm\OneControl.Direct.MyRvLinkBle\OneControl.Direct.MyRvLinkBle.csproj" />
+    <ProjectReference Include="..\..\onecontrol.direct.idscomm\OneControl.Direct.MyRvLink\OneControl.Direct.MyRvLink.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="UserInterface\ScanVin\ScanVinPage.xaml.cs">
+      <DependentUpon>ScanVinPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserInterface\CollectionCells\DevicePairingCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserInterface\Common\ActionSheet\ActionSheetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserInterface\Pages\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserInterface\Settings\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

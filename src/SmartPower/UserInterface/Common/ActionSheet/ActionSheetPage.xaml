@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:SmartPower.UserInterface.Common;assembly=SmartPower"
+             xmlns:converters="clr-namespace:IDS.UI.Converters;assembly=ids.ui"
+             x:Class="SmartPower.UserInterface.Common.ActionSheet.ActionSheetPage"
+             Title="{Binding Title}" >
+    <ContentPage.Resources>
+        <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="0">
+            <Label x:Name="DescriptionLabel"
+                   Text="{Binding Subtitle}"
+                   BackgroundColor="{DynamicResource Primary}"
+                   TextColor="{DynamicResource OnPrimary}"
+                   Margin="0"
+                   Padding="20,0,20,10">
+                <Label.IsVisible>
+                    <Binding Path="Subtitle" Converter="{StaticResource StringToBoolConverter}" />
+                </Label.IsVisible>
+            </Label>
+            <CollectionView 
+                BackgroundColor="{DynamicResource Background}"
+                ItemsSource="{Binding Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="common:Option">
+                            <Grid ColumnDefinitions="*, 30"  Padding="30" >
+                                <Label Grid.Column="0" 
+                                       Margin="0"
+                                       TextColor="{DynamicResource OnBackground}"
+                                       FontSize="18"  Text="{Binding Text}" />
+                          
+                                    <Ellipse Grid.Column="1" 
+                                             Stroke="Black"
+                                             Fill="White"
+                                             WidthRequest="25"
+                                             HeightRequest="25"
+                                             HorizontalOptions="Center"
+                                             VerticalOptions="Center" />
+                                    <Ellipse Grid.Column="1" 
+                                             x:Name="check"
+                                             Fill="Black"
+                                             IsVisible="{Binding IsSelected}"
+                                             WidthRequest="15"
+                                             HeightRequest="15"
+                                             HorizontalOptions="Center"
+                                             VerticalOptions="Center" />
+                            <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CellCommand}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

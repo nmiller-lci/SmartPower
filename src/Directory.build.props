@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>9</LangVersion>
+    <Nullable>enable</Nullable>
+    <DisableExtraReferences>true</DisableExtraReferences>
+
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+</Project>

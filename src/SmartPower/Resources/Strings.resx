@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConnectionStateConnected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="ConnectionStateConnecting" xml:space="preserve">
+    <value>Connecting</value>
+  </data>
+  <data name="ConnectionStateError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ConnectionStateNotConnected" xml:space="preserve">
+    <value>Not Connected</value>
+  </data>
+  <data name="ConnectionStatePaired" xml:space="preserve">
+    <value>Paired</value>
+  </data>
+  <data name="ConnectionStatePairing" xml:space="preserve">
+    <value>Pairing</value>
+  </data>
+  <data name="ConnectionStateVerified" xml:space="preserve">
+    <value>Verified</value>
+  </data>
+  <data name="ConnectionStateVerifying" xml:space="preserve">
+    <value>Verifying</value>
+  </data>
+  <data name="ConnectionStateSkipped" xml:space="preserve">
+    <value>Skipped</value>
+  </data>
+  <data name="title_vin_and_floorplan" xml:space="preserve">
+    <value>VIN and Floorplan</value>
+  </data>
+  <data name="enter_or_scan_vin" xml:space="preserve">
+    <value>Enter or Scan VIN</value>
+  </data>
+  <data name="enter_vin" xml:space="preserve">
+    <value>Enter VIN</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>START</value>
+  </data>
+  <data name="title_pair_devices" xml:space="preserve">
+    <value>Pair Devices</value>
+  </data>
+  <data name="select_floorplan" xml:space="preserve">
+    <value>Select Floorplan</value>
+  </data>
+  <data name="existing_vin" xml:space="preserve">
+    <value>Existing VIN</value>
+  </data>
+  <data name="you_have_already_paired_using_this_vin" xml:space="preserve">
+    <value>You have already paired using this VIN.</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="continue_text" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="doneButton" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="resetButton" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="select_model" xml:space="preserve">
+    <value>Select Model</value>
+  </data>
+  <data name="invalid_vin" xml:space="preserve">
+    <value>Invalid VIN</value>
+  </data>
+  <data name="device_connecting_error" xml:space="preserve">
+    <value>Check that the device is present on the RV.
+
+Check if the correct label or QR code was scanned.
+
+Check that the device is powered and connected properly.
+
+For further assistance, please contact Lippert Electronics Service Technician.</value>
+  </data>
+  <data name="device_pairing_error" xml:space="preserve">
+    <value>Check for any obstructions and physical distance of the device causing a bad signal.
+
+Unable to read status of the device, may be a bad device and require replacement.
+
+For further assistance, please contact Lippert Electronics Service Technician.</value>
+  </data>
+  <data name="device_connecting_error_title" xml:space="preserve">
+    <value>Connecting Error</value>
+  </data>
+  <data name="device_pairing_error_title" xml:space="preserve">
+    <value>Pairing Error</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>YES</value>
+  </data>
+  <data name="existing_device_title" xml:space="preserve">
+    <value>Existing Device</value>
+  </data>
+  <data name="existing_paired_device_error" xml:space="preserve">
+    <value>You have already paired to this device before. Do you wish to proceed?</value>
+  </data>
+  <data name="existing_accessory_gateway_error" xml:space="preserve">
+    <value>You have already paired to this RV in the past. Do you wish to proceed?</value>
+  </data>
+  <data name="battery_monitor_already_scanned" xml:space="preserve">
+    <value>A battery monitor has already been scanned for this RV.</value>
+  </data>
+  <data name="wind_sensor_already_scanned" xml:space="preserve">
+    <value>A wind sensor has already been scanned for this RV.</value>
+  </data>
+  <data name="all_wind_sensors_already_scanned" xml:space="preserve">
+    <value>All wind sensors have already been scanned for this RV.</value>
+  </data>
+  <data name="existing_battery_monitor_error" xml:space="preserve">
+    <value>You have already paired to BATTERY MONITOR. Do you wish to proceed?</value>
+  </data>
+  <data name="reset_settings_title" xml:space="preserve">
+    <value>Reset Settings</value>
+  </data>
+  <data name="reset_settings_message" xml:space="preserve">
+    <value>No changes you made will be saved. Devices that have already been paired with the RV, will need to be manually unpaired from the Accessory Gateway. Do you wish to proceed?</value>
+  </data>
+  <data name="rv" xml:space="preserve">
+    <value>RV</value>
+  </data>
+  <data name="battery_monitor" xml:space="preserve">
+    <value>Battery Monitor</value>
+  </data>
+  <data name="wind_sensor" xml:space="preserve">
+    <value>Wind Sensor</value>
+  </data>
+  <data name="invalid_device_qr_code" xml:space="preserve">
+    <value>Invalid device QR code. {0} {1}; QR code URI: \"{2}\"</value>
+  </data>
+  <data name="missing_qr_keys" xml:space="preserve">
+    <value>Missing required uri query keys.</value>
+  </data>
+  <data name="unrecognized_qr_code" xml:space="preserve">
+    <value>Unrecognized QR code.</value>
+  </data>
+  <data name="skip" xml:space="preserve">
+    <value>SKIP</value>
+  </data>
+  <data name="title_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="error_logs_caps" xml:space="preserve">
+    <value>ERROR LOGS</value>
+  </data>
+  <data name="generating_log_file" xml:space="preserve">
+    <value>Generating Log File...</value>
+  </data>
+  <data name="sending_logs" xml:space="preserve">
+    <value>Sending Log</value>
+  </data>
+  <data name="unable_to_send" xml:space="preserve">
+    <value>Unable to send</value>
+  </data>
+  <data name="upload_complete" xml:space="preserve">
+    <value>Upload Complete</value>
+  </data>
+  <data name="upload_logs" xml:space="preserve">
+    <value>Upload Logs to LCI</value>
+  </data>
+  <data name="incomplete_configuration" xml:space="preserve">
+    <value>Incomplete Configuration</value>
+  </data>
+  <data name="your_configuration_is_incomplete" xml:space="preserve">
+    <value>Your configuration is incomplete. Are you sure you would like to continue?</value>
+  </data>
+  <data name="change_log_level" xml:space="preserve">
+    <value>Change Log Level</value>
+  </data>
+  <data name="events_below_this_level" xml:space="preserve">
+    <value>Events below this level will be ignored.
+Changes won't be persisted across app starts.</value>
+  </data>
+  <data name="log_level" xml:space="preserve">
+    <value>Log Level</value>
+  </data>
+</root>

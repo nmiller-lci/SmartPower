@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:SmartPower.Resources;assembly=SmartPower"
+             xmlns:vm="clr-namespace:SmartPower.UserInterface.Pairing"
+             xmlns:controls="clr-namespace:IDS.UI.Shared.Views.Controls;assembly=ids.ui"
+             xmlns:oemControls="clr-namespace:SmartPower.UserInterface.Controls;assembly=SmartPower"
+             xmlns:collectionCells="clr-namespace:SmartPower.UserInterface.CollectionCells;assembly=SmartPower"
+             xmlns:xctEffects="clr-namespace:Xamarin.CommunityToolkit.Effects;assembly=Xamarin.CommunityToolkit"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="SmartPower.UserInterface.Pairing.PairDevicePage"
+             x:DataType="vm:PairDeviceViewModel"
+             x:Name="Self"
+             xctEffects:StatusBarEffect.Color="{x:DynamicResource Primary}"
+             xctEffects:StatusBarEffect.Style="LightContent">
+    <NavigationPage.TitleView>
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{x:Static resources:Strings.title_pair_devices}"
+                          FontSize="Large"
+                          TextColor="White" />
+                    
+                    <Span Text="{x:Static system:Environment.NewLine}" 
+                          FontSize="Small"/>
+
+                    <Span Text="{Binding Vin, Mode=OneWay}"
+                          FontSize="Small"
+                          TextColor="White" />
+
+                    <Span Text=" | "
+                          FontSize="Small"
+                          TextColor="White" />
+
+                    <Span Text="{Binding SelectedFloorPlan, Mode=OneWay}"
+                          FontSize="Small"
+                          TextColor="White" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="DevicePairingCell" x:DataType="vm:PairDeviceCellModel">
+                <collectionCells:DevicePairingCell
+                    Title="{Binding DeviceName}"
+                    State="{Binding State}"
+                    Command="{Binding ShowErrorCommand}"
+                    CommandParameter="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="WindSensorPairingCell" x:DataType="vm:PairWindSensorCellModel">
+                <collectionCells:WindSensorPairingCell 
+                    WindSensors="{Binding Devices}"
+                    CanSkip="{Binding CanSkip}"
+                    SkipCommand="{Binding SkipWindSensorCommand}"/>
+            </DataTemplate>
+            <vm:DevicePairingCellTemplateSelector
+                x:Key="DevicePairingCellTemplateSelector"
+                DevicePairingCell="{StaticResource DevicePairingCell}"
+                WindSensorPairingCell="{StaticResource WindSensorPairingCell}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand" 
+              RowDefinitions="3*, 5*, 46"
+              ColumnDefinitions="*, *"
+              RowSpacing="0"
+              ColumnSpacing="0">
+            
+            <!-- Scanner -->
+            <oemControls:CameraView Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    IsScanning="{Binding Path=IsScanning}"
+                                    ScanCommand="{Binding Path=ScanResultCommand}"
+                                    PossibleFormats="{Binding Path=PossibleFormats}" />
+            
+            <!-- List of items -->
+            <CollectionView Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{Binding PairDevices}"
+                            ItemTemplate="{StaticResource DevicePairingCellTemplateSelector}"/>
+
+            <!-- Footer -->
+            <controls:RoundedButtonControl Grid.Row="2"
+                                           Grid.Column="0"
+                                           VerticalOptions="Center"
+                                           Margin="16, 0, 8, 0"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextTransform="Uppercase"
+                                           BorderWidth="1"
+                                           Text="{x:Static resources:Strings.resetButton}"
+                                           BorderColor="{x:DynamicResource Primary}"
+                                           TextColor="{x:DynamicResource Primary}"
+                                           ButtonBackgroundColor="{x:DynamicResource OnPrimary}"
+                                           DisableTextColor="{x:DynamicResource Outline}"
+                                           Command="{Binding ResetSettingsCommand}" />
+
+            <controls:RoundedButtonControl Grid.Row="2"
+                                           Grid.Column="1"
+                                           VerticalOptions="Center"
+                                           Margin="16, 0, 8, 0"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextTransform="Uppercase"
+                                           BorderWidth="1"
+                                           Text="{x:Static resources:Strings.doneButton}"
+                                           BorderColor="{x:DynamicResource Primary}"
+                                           TextColor="{x:DynamicResource OnPrimary}"
+                                           ButtonBackgroundColor="{x:DynamicResource Primary}"
+                                           Command="{Binding DoneCommand}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

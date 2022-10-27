@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:SmartPower.Resources;assembly=SmartPower"
+             xmlns:controls="clr-namespace:IDS.UI.Views.Controls;assembly=ids.ui"
+             xmlns:xctEffects="clr-namespace:Xamarin.CommunityToolkit.Effects;assembly=Xamarin.CommunityToolkit"
+             x:Class="SmartPower.UserInterface.Settings.SettingsPage"
+             xctEffects:StatusBarEffect.Color="{x:DynamicResource Primary}"
+             xctEffects:StatusBarEffect.Style="LightContent"
+             Title="{x:Static resources:Strings.title_settings}">
+    <ContentPage.Content>
+      <StackLayout Margin="20">
+        <Frame HasShadow="True" Padding="20" BorderColor="LightGray" CornerRadius="3">
+              <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text ="{x:Static resources:Strings.error_logs_caps}" HorizontalOptions="StartAndExpand" TextColor="{x:DynamicResource OnSurface}"/>
+                    <Label Text ="{Binding UploadStatusDescription}" HorizontalOptions="EndAndExpand"  TextColor="{x:DynamicResource OnSurface}"/>
+              </StackLayout>
+              <Frame.GestureRecognizers>
+                  <TapGestureRecognizer Command="{Binding UploadLogsCommand}" />
+              </Frame.GestureRecognizers>
+          </Frame>
+          <Frame HasShadow="True" Padding="20" BorderColor="LightGray" CornerRadius="3">
+              <Grid RowDefinitions="auto,auto" ColumnDefinitions="*,*" RowSpacing="0">
+              <Label Grid.Row="0" Grid.Column="0" Text ="{x:Static resources:Strings.log_level}" TextColor="{StaticResource OnSurface}"/>
+              <Label Grid.Row="1" Grid.Column="0"  Text ="{Binding LogLevelStatus}" TextColor="{StaticResource OnSurface}" FontSize="12"/>
+              <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center"  Text ="{x:Static resources:Strings.change_log_level}" TextColor="{StaticResource OnSurface}" HorizontalTextAlignment="End"/>
+              </Grid>
+           <Frame.GestureRecognizers>
+                  <TapGestureRecognizer Command="{Binding ChangeLogLevelCommand}" />
+              </Frame.GestureRecognizers>
+          </Frame>
+
+          <Frame HasShadow="True" Padding="20" BorderColor="LightGray" CornerRadius="3">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text ="Demo Mode" HorizontalOptions="StartAndExpand" TextColor="{x:DynamicResource OnSurface}"/>
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding IsToggled}" />
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

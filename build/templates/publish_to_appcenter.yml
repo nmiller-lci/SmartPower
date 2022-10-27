@@ -1,0 +1,113 @@
+# Publish App artifact (APK or IPA) to AppCenter
+
+parameters:
+
+- name: serverEndpoint
+  type: string
+  default: ''
+
+- name: appSlug
+  type: string
+  default: ''
+
+- name: appPipelineArtifact
+  type: string
+  default: ''
+
+- name: releaseNotes
+  type: string
+  default: '$(Build.Reason)'
+
+- name: distributionGroupId
+  type: string
+  default: ''
+
+- name: appleCert
+  type: string
+  default: ''
+
+- name: appleCertPwd
+  type: string
+  default: ''
+
+- name: appleProvProfile
+  type: string
+  default: ''
+
+steps:
+        
+- bash: |
+    if [ -z "$SERVERENDPOINT" ]; then
+      echo "##vso[task.logissue type=error;]Missing template parameter \"serverEndpoint\""
+      echo "##vso[task.complete result=Failed;]"
+
+    elif [ -z "$APPSLUG" ]; then
+      echo "##vso[task.logissue type=error;]Missing template parameter \"appSlug\""
+      echo "##vso[task.complete result=Failed;]"
+
+    elif [ -z "$APPPIPELINEARTIFACT" ]; then
+      echo "##vso[task.logissue type=error;]Missing template parameter \"appPipelineArtifact\""
+      echo "##vso[task.complete result=Failed;]"
+    fi
+  env:
+    SERVERENDPOINT: ${{ parameters.serverEndpoint }}
+    APPSLUG: ${{ parameters.appSlug }}
+    APPPIPELINEARTIFACT: ${{ parameters.appPipelineArtifact }}
+  displayName: Check for required template parameter(s)
+
+#- task: DownloadPipelineArtifact@2
+#  inputs:
+#    artifact: ${{ parameters.appPipelineArtifact }}
+#    path: '$(Pipeline.Workspace)/Artifacts/${{ parameters.appPipelineArtifact }}'
+#  displayName: 'Download pipeline artifact'
+
+- bash: |
+    export appFile="$(find $LOCALARTIFACT/*.apk)"
+
+    if [ -z "$appFile" ]; then
+      export appFile="$(find $LOCALARTIFACT/*.aab)"
+    fi
+
+    if [ -z "$appFile" ]; then
+      export appFile="$(find $LOCALARTIFACT/*.ipa)"
+    fi
+    
+    echo "##vso[task.setvariable variable=AppFile]$appFile"
+  env:    
+    LOCALARTIFACT: '$(Pipeline.Workspace)/Artifacts/${{ parameters.appPipelineArtifact }}'
+  displayName: 'Locate APK/IPA'
+
+- task: InstallAppleCertificate@2
+  displayName: 'Install App distribution certificate'
+  condition: and(ne('${{ parameters.appleCert }}', ''), ne('${{ parameters.appleCertPwd }}', ''), ne('${{ parameters.appleProvProfile }}', ''))
+  inputs:
+    certSecureFile: '${{ parameters.appleCert }}'
+    certPwd: '${{ parameters.appleCertPwd }}'
+    keychain: 'temp'
+
+- task: InstallAppleProvisioningProfile@1
+  displayName: 'Install App provisioning profile'
+  condition: and(ne('${{ parameters.appleCert }}', ''), ne('${{ parameters.appleCertPwd }}', ''), ne('${{ parameters.appleProvProfile }}', ''))
+  name: 'AddHocProfile'
+  inputs:
+    provProfileSecureFile: '${{ parameters.appleProvProfile }}'
+
+- task: IpaResign@1
+  displayName: Resign IPA for AppCenter
+  condition: and(ne('${{ parameters.appleCert }}', ''), ne('${{ parameters.appleCertPwd }}', ''), ne('${{ parameters.appleProvProfile }}', ''))
+  inputs:
+    ipaPath: '$(AppFile)'
+    signMethod: 'id'
+    signIdIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    signIdUnlockKeychain: false
+    provisionMethod: 'id'
+    provIdProfileUuid: '$(AddHocProfile.provisioningProfileUuid)'
+
+- task: AppCenterDistribute@3
+  displayName: 'Publish APK/IPA to AppCenter'
+  inputs:
+    serverEndpoint: '${{ parameters.serverEndpoint }}'
+    appSlug: '${{ parameters.appSlug }}'
+    appFile: '$(AppFile)'
+    releaseNotesInput: '${{ parameters.releaseNotes }}'
+    distributionGroupId: '${{ parameters.distributionGroupId }}'

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:controls="clr-namespace:IDS.UI.Shared.Views.Controls;assembly=ids.ui"
+                x:Class="SmartPower.UserInterface.Controls.FlashlightButton"
+                x:Name="Self"
+                HeightRequest="56"
+                WidthRequest="56">
+    
+    <Ellipse WidthRequest="50"
+             HeightRequest="50"
+             Fill="{DynamicResource Scrim}"/>
+    <controls:SKImageView WidthRequest="30" HeightRequest="30"
+                          Margin="10" Opacity=".5" 
+                          ImageSource="resource://SmartPower.Resources.Images.flashlighton.svg?assembly=SmartPower">
+        <controls:SKImageView.Triggers>
+            <DataTrigger TargetType="controls:SKImageView" Binding="{Binding IsTorchOn, Source={x:Reference Self}}" Value="True">
+                <Setter Property="ImageSource" Value="resource://SmartPower.Resources.Images.flashlighton.svg?assembly=SmartPower"/>
+                <Setter Property="Opacity" Value="1" />
+            </DataTrigger>
+        </controls:SKImageView.Triggers>
+        <controls:SKImageView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+        </controls:SKImageView.GestureRecognizers>
+    </controls:SKImageView>
+</Grid>

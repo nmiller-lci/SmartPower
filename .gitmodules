@@ -1,0 +1,24 @@
+[submodule "ids.portable.ble"]
+	path = ids.portable.ble
+	url = ../ids.portable.ble.git
+[submodule "ids.portable.can"]
+	path = ids.portable.can
+	url = ../ids.portable.can.git
+[submodule "devscripts"]
+	path = devscripts
+	url = ../devscripts.git
+[submodule "ids.portable.devices"]
+	path = ids.portable.devices
+	url = ../ids.portable.devices.git
+[submodule "ids.portable.logicaldevices"]
+	path = ids.portable.logicaldevices
+	url = ../ids.portable.logicaldevices.git
+[submodule "ids.ui"]
+	path = ids.ui
+	url = ../ids.ui.git
+[submodule "onecontrol.devices"]
+	path = onecontrol.devices
+	url = ../onecontrol.devices.git
+[submodule "onecontrol.direct.idscomm"]
+	path = onecontrol.direct.idscomm
+	url = ../onecontrol.direct.idscomm.git

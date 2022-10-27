@@ -1,0 +1,112 @@
+# Build Android App
+
+parameters:
+- name: app
+  type: string
+  default: ''
+
+- name: solution
+  type: string
+  default: ''
+
+- name: project
+  type: string
+  default: ''
+
+- name: projectPath
+  type: string
+  default: ''
+
+- name: buildConfiguration
+  type: string
+  default: ''
+
+- name: versionName
+  type: string
+  default: ''
+
+- name: keystoreFile
+  type: string
+  default: ''
+
+- name: keystorePassword
+  type: string
+  default: ''
+
+- name: keystoreAlias
+  type: string
+  default: ''
+
+- name: keyPassword
+  type: string
+  default: ''
+
+- name: publishArtifacts
+  type: boolean
+  default: false
+
+steps:
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '${{ parameters.solution }}'
+    vstsFeed: 'f703c69c-2dfa-4eb0-bf6f-c5a65ea32777'
+  displayName: 'Restore NuGets'
+
+# - bash: |
+#     export manifest="$(dirname ${{ parameters.project }})"/Properties/AndroidManifest.xml
+#     echo "##vso[task.setvariable variable=AndroidManifest]$manifest"
+#   displayName: 'Locate AndroidManifest.xml'
+  
+- task: android-manifest-version@1
+  displayName: "Set app version"
+  inputs:
+    sourcePath: '${{ parameters.projectPath }}/Properties/AndroidManifest.xml'
+    versionCodeOption: "buildid"
+    versionCode: "$(Build.BuildId)"
+    versionName:
+    printFile: true
+
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '${{ parameters.project }}'
+    configuration: '${{ parameters.buildConfiguration }}'
+    outputDirectory: '$(build.BinariesDirectory)/${{ parameters.buildConfiguration }}'
+    msbuildVersionOption: latest
+    msbuildArchitectureOption: x64
+    msbuildArguments: '/p:RestorePackages=false'
+    jdkOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+  displayName: 'Build app'
+    
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '$(build.BinariesDirectory)/${{ parameters.buildConfiguration }}/*.apk'
+    apksignerKeystoreFile: '${{ parameters.keystoreFile }}'
+    apksignerKeystorePassword: '${{ parameters.keystorePassword }}'
+    apksignerKeystoreAlias: '${{ parameters.keystoreAlias }}'
+    apksignerKeyPassword: '${{ parameters.keyPassword }}'
+  displayName: 'Sign and align APK'
+
+- ${{ if eq(parameters.publishArtifacts, true) }}:
+  # - bash: |
+  #     export apkPath="$(find '$(Build.BinariesDirectory)/${{ parameters.buildConfiguration }}/*.apk')"
+  #     export apk="$(basename $apkPath)"
+
+  #     echo "##vso[task.setVariable variable=ApkPath;isOutput=true]$apkPath"
+  #     echo "##vso[task.setVariable variable=Apk;isOutput=true]$apk"
+  #     echo "##vso[task.setVariable variable=Artifact;isOutput=true]${{ parameters.app }}.Android.${{ parameters.buildConfiguration }}.$(Build.BuildNumber)"
+  #   name: 'AndroidBuild'
+  #   displayName: 'Locate APK'
+
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(build.BinariesDirectory)/${{ parameters.buildConfiguration }}'
+      Contents: '*.apk'
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'drop'
+    displayName: 'Publish pipeline artifact'

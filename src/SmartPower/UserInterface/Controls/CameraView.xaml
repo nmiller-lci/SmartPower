@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:controls="clr-namespace:SmartPower.UserInterface.Controls;assembly=SmartPower"
+      xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+      xmlns:effects="clr-namespace:SmartPower.UserInterface.Effects;assembly=SmartPower"
+      x:Class="SmartPower.UserInterface.Controls.CameraView"
+      x:Name="Self"
+      RowDefinitions="24,*,24"
+      ColumnDefinitions="24,*,24"
+      RowSpacing="0"
+      ColumnSpacing="0">
+    
+    <controls:CameraLayout Grid.Row="0"
+                           Grid.RowSpan="3"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3">
+        <zxing:ZXingScannerView x:Name="ScannerView"
+                                IsScanning="{Binding Path=IsScanning, Source={x:Reference Self}}"
+                                IsTorchOn="{Binding Path=IsTorchOn, Source={x:Reference Self}}"
+                                OnScanResult="OnOnScanResult">
+            <zxing:ZXingScannerView.Effects>
+                <effects:FindLowestCameraResolutionEffect />
+            </zxing:ZXingScannerView.Effects>
+        </zxing:ZXingScannerView>
+    </controls:CameraLayout>
+
+    <BoxView x:Name="ScanLine"
+             Grid.Row="1"
+             Grid.Column="1"
+             HeightRequest="1.5"
+             VerticalOptions="Center"
+             Margin="24, 0"
+             BackgroundColor="Red"
+             Opacity="0.5"
+             IsVisible="{Binding Path=ShowScanLine, Source={x:Reference Self}}" />
+    
+    <controls:FlashlightButton Grid.Row="1"
+                               Grid.Column="1"
+                               HorizontalOptions="End"
+                               VerticalOptions="End"
+                               Margin="12"
+                               IsTorchOn="{Binding Path=IsTorchOn, Source={x:Reference Self}}" />
+
+    <BoxView Grid.Row="0"
+             Grid.Column="0"
+             Grid.ColumnSpan="3"
+             BackgroundColor="{x:DynamicResource Scrim}" />
+    
+    <BoxView Grid.Row="1"
+             Grid.Column="0"
+             BackgroundColor="{x:DynamicResource Scrim}" />
+    
+    <BoxView Grid.Row="1"
+             Grid.Column="2"
+             BackgroundColor="{x:DynamicResource Scrim}" />
+    
+    <BoxView Grid.Row="2"
+             Grid.Column="0"
+             Grid.ColumnSpan="3"
+             BackgroundColor="{x:DynamicResource Scrim}" />
+</Grid>

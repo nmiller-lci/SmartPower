@@ -1,0 +1,84 @@
+parameters:
+- name: app
+  type: string
+
+- name: releaseNotes
+  type: string
+  default: ''
+
+- name: solutionName
+  type: string
+  default: 'OneControl'
+
+- name: androidProject
+  type: string
+  default: './OneControl/OneControl.Android/OneControl.Android.csproj'
+
+- name: iOSProject
+  type: string
+  default: './OneControl/OneControl.iOS/OneControl.iOS.csproj'
+
+
+variables:
+#  - group: 'ReleaseVariables'
+  - group: 'App Signing Credentials'
+
+  # Service Connections #
+  - name: AppleAppStoreServiceConnection
+    value: 'Apple App Store'
+    
+  - name: GooglePlayServiceConnection
+    value: 'Google Play'
+
+  - name: AppCenterServiceConnection
+    value: 'AppCenter'
+
+  # Build Variables #
+  - name: App
+    value: '${{ parameters.app }}'
+
+  - name: BuildConfiguration
+    value: 'Release'
+
+  - name: VersionName
+    value: '$(BuildMajor).$(BuildMinor).$(BuildPatch)'
+
+  # Android Signing #
+  - name: KeystoreFile
+    value: 'LCI1.keystore'
+    
+  - name: KeystorePassword
+    value: $[ variables[ format( '{0}{1}', variables.App, '.keystorePassword' ) ] ]
+    
+  - name: KeystoreAlias
+    value: $[ variables[ format( '{0}{1}', variables.App, '.alias' ) ] ]
+
+  - name: KeyPassword
+    value: $[ variables[ format( '{0}{1}', variables.App, '.keyPassword' ) ] ]
+
+  # iOS Signing #
+  - name: DistributionCertificate
+    value: 'Store2022.p12'
+
+  - name: DistributionCertificatePassword
+    value: '$(iOS Distribution.p12 Password)'
+
+  - name: FastlaneAppStoreConnectApiKey
+    value: 'FastlaneAppStoreConnectApiKey.json'   
+
+  # AppCenter Distribution #
+  # These will need to be dynamic for Release pipeline as the "App" will change for each co-brand #
+  - name: AndroidSlug
+    value: $[ format( 'onecontrol-w4m3/{0}.Android', variables.App ) ]
+    
+  - name: iOSSlug
+    value: $[ format( 'onecontrol-w4m3/{0}.iOS', variables.App ) ]
+
+  - name: ReleaseNotes
+    value: '${{ parameters.releaseNotes }}'
+
+  - name: ReleaseDistributionGroup
+    value: '' # '--' Distribution group
+
+  - name: QADistributionGroup
+    value: '' # '--' Distribution group

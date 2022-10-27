@@ -1,0 +1,96 @@
+# Nuget build pipeline
+# 
+# https://aka.ms/yaml
+
+trigger:
+- release*
+- master
+
+pr:
+  branches:
+    include:
+      - master
+      - hotfix*
+      - release*
+
+pool: 
+  vmImage: 'windows-latest'
+
+variables:
+  - template: templates/global_pipeline_variables.yml
+    parameters:
+      app: 'SmartPower'
+  
+  - name: "nuget_version"
+    value: "*"
+    
+  - name: "dotnet_version"
+    value: "6.0.300"
+
+  - name: "artifact_name"
+    value: "com.lci1.SmartPower.apk"
+
+  - name: "QA_AppCenterId" #Should we move this to a library variable?
+    value: "68ea8157-04d6-4ab9-9410-6e8c65a14448"
+
+stages:
+
+ - stage: Build
+   jobs: 
+    - job: Android
+      steps:
+
+      - template: templates/nuget-workaround.yml
+
+      - template: templates/build_tools_setup.yml
+
+      - template: templates/android_build.yml
+        parameters:
+          app: '$(App)'
+          project: '$(AndroidProject)'
+          projectPath: './src/SmartPower.Android'
+          solution: '$(Solution)'
+          buildConfiguration: '$(BuildConfiguration)'
+          versionName: '$(VersionName)'
+          keystoreFile: '$(KeystoreFile)'
+          keystorePassword: '$(keystorePassword)'
+          keystoreAlias: '$(keystoreAlias)'
+          keyPassword: '$(keyPassword)'
+          publishArtifacts: true
+
+ - stage: PublishDev
+   dependsOn: Build
+   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+   jobs:
+    - deployment: Dev
+      environment: Dev
+      strategy:
+        runOnce:    #rolling, canary are the other strategies that are supported
+          deploy:
+            steps:
+              - task: AppCenterDistribute@3
+                displayName: 'Publish APK/IPA to AppCenter'
+                inputs:
+                  serverEndpoint: '$(AppCenterServiceConnection)'
+                  appSlug: 'onecontrol-w4m3/OEM-Pairing-Tool'
+                  appFile: '$(Pipeline.Workspace)/drop/$(artifact_name)'
+                  releaseNotesInput: 'Daily Dev Release' 
+
+ - stage: PublishQA
+   dependsOn: PublishDev
+   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+   jobs:
+   - deployment: QA
+     environment: QA
+     strategy:
+        runOnce:    #rolling, canary are the other strategies that are supported
+          deploy:
+            steps:
+              - task: AppCenterDistribute@3
+                displayName: 'Publish APK/IPA to AppCenter'
+                inputs:
+                  serverEndpoint: '$(AppCenterServiceConnection)'
+                  appSlug: 'onecontrol-w4m3/OEM-Pairing-Tool'
+                  appFile: '$(Pipeline.Workspace)/drop/$(artifact_name)'
+                  distributionGroupId: '$(QA_AppCenterId)'
+                  releaseNotesInput: 'Daily Dev Release'

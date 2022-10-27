@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Layout x:TypeArguments="View"
+        xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:collectionCells="clr-namespace:SmartPower.UserInterface.CollectionCells;assembly=SmartPower"
+        xmlns:fontAwesome="clr-namespace:IDS.UI.Shared.Resources.Fonts.FontAwesome;assembly=ids.ui"
+        xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+        x:Class="SmartPower.UserInterface.CollectionCells.DevicePairingCell"
+        x:Name="Self">
+    <collectionCells:DevicePairingCell.Content>
+        <Grid RowDefinitions="64, 1"
+              RowSpacing="0">
+            <FlexLayout Grid.Row="0"
+                        Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        AlignContent="Center"
+                        AlignItems="Center"
+                        Wrap="Wrap"
+                        BackgroundColor="{x:DynamicResource Surface}"
+                        Padding="16">
+
+                <FlexLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=Command, Source={x:Reference Self}}"
+                                          CommandParameter="{Binding Path=CommandParameter, Source={x:Reference Self}}" />
+                </FlexLayout.GestureRecognizers>
+
+                <Label VerticalOptions="Start"
+                       TextTransform="Uppercase"
+                       Padding="0,0,4,0"
+                       Style="{x:StaticResource BodyLarge}"
+                       TextColor="{x:DynamicResource OnSurface}"
+
+                       Text="{Binding Path=Title, Source={x:Reference Self}}" />
+
+                <Label VerticalOptions="Start"
+                       HorizontalTextAlignment="End"
+                       Padding="0,0,4,0"
+
+                       Style="{x:StaticResource BodyMedium}"
+                       TextColor="{x:DynamicResource OnSurface}"
+                       
+                       Text="{Binding Path=StateDescription, Source={x:Reference Self}}" />
+
+                <lottie:AnimationView FlexLayout.Basis="24"
+                                      HeightRequest="24"
+                                      Margin="2"
+                                      AnimationSource="EmbeddedResource"
+                                      Animation="Resources.Lottie.spinner.json"  
+                                      RepeatMode="Infinite"
+                                      AutoPlay="True"
+                                      IsVisible="{Binding Path=ShowSpinner, Source={x:Reference Self}}" />
+
+                <Label FlexLayout.Basis="24"
+                       HeightRequest="24"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontSize="20"
+                       FontFamily="FontAwesome5Solid"
+                       Text="{x:Static fontAwesome:FontAwesomeGlyphs.ExclamationCircle}"
+                       TextColor="{x:DynamicResource Error}"
+                       IsVisible="{Binding Path=ShowError, Source={x:Reference Self}}" />
+                
+                <Label FlexLayout.Basis="100%"
+                       VerticalOptions="Start"
+                       MaxLines="2"
+                       Style="{x:StaticResource BodySmall}"
+                       TextColor="{x:DynamicResource OnSurface}"
+                       IsVisible="{Binding Path=ShowDescription, Source={x:Reference Self}}"
+                       Text="{Binding Path=Description, Source={x:Reference Self}}" />
+
+            </FlexLayout>
+
+            <BoxView Grid.Row="1"
+                     Background="{x:DynamicResource Outline}" />
+        </Grid>
+    </collectionCells:DevicePairingCell.Content>
+</Layout>

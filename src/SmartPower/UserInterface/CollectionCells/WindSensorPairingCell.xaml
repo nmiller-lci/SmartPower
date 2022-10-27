@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:resources="clr-namespace:SmartPower.Resources;assembly=SmartPower"
+        xmlns:controls="clr-namespace:SmartPower.UserInterface.Controls"
+        x:Class="SmartPower.UserInterface.CollectionCells.WindSensorPairingCell"
+        x:Name="Self">
+    <ContentView.Content>
+        <Grid RowDefinitions="160, 1"
+              RowSpacing="0">
+            
+            <FlexLayout Grid.Row="0"
+                        Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        AlignContent="Center"
+                        AlignItems="Center"
+                        Wrap="Wrap"
+                        BackgroundColor="{x:DynamicResource Surface}"
+                        Padding="16">
+                
+                <Label FlexLayout.Grow="1"
+                       VerticalTextAlignment="Center"
+                       TextTransform="Uppercase"
+                       Style="{x:StaticResource BodyLarge}"
+                       TextColor="{x:DynamicResource OnSurface}"
+                       Text="{x:Static resources:Strings.wind_sensor}" />
+                
+                <Button HeightRequest="24"
+                        Padding="0"
+                        CornerRadius="4"
+                        BackgroundColor="{x:DynamicResource Secondary}"
+                        TextColor="{x:DynamicResource Surface}"
+                        Text="{x:Static resources:Strings.skip}"
+                        Command="{Binding Path=SkipCommand, Source={x:Reference Self}}"
+                        IsVisible="{Binding Path=CanSkip, Source={x:Reference Self}}"/>
+                
+                <controls:StepProgressBarControl  FlexLayout.Basis="100%"
+                                                  Steps="{Binding Steps, Source={x:Reference Self}}"
+                                                  Padding="0, 8, 0, 0"/>
+            </FlexLayout>
+            
+            <BoxView Grid.Row="1"
+                     Background="{x:DynamicResource Outline}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

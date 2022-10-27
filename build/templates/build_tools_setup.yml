@@ -1,0 +1,40 @@
+#Setup Build tools
+#Input variables
+# dotnet_version = version of dotnet to install
+# nuget_version = version of nuget to install
+
+#Setup Build tools
+#Input variables
+# dotnet_version = version of dotnet to install
+# nuget_version = version of nuget to install
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Install latest Nuget tool'
+  
+- task: UseDotNet@2
+  displayName: 'Use .Net Core sdk $(dotnet_version)'
+  inputs:
+    version: '$(dotnet_version)'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: '"dotnet nuget list source"'
+  displayName: 'Workaround to fix Nuget sources'
+
+# - task: InstallAppleCertificate@2
+#   displayName: 'Install Certificate'
+#   inputs:
+#       certSecureFile: 'DistCert2022.p12'
+#       certPwd: '$(P12password)'
+#       keychain: 'temp'
+#   condition: eq( variables['Agent.OS'], 'Darwin' ) 
+
+- powershell:
+    Write-Host "##vso[task.setvariable variable=AndroidNdkDirectory]$env:ANDROID_NDK_LATEST_HOME"
+  displayName: 'Locate NDK Folder'
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+
+
+

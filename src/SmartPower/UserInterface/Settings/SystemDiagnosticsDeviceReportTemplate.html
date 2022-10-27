@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {{application_name}}  System Diagnostic Report
+        </title>
+        <style>
+            body {
+                width: 100%;
+                background-color: {{primary_color}};
+                color: {{text_color}};
+            }
+
+            #header {
+                font-family: Rubik-Medium;
+            }
+
+            #system-report {
+                border-collapse: collapse;
+                margin: 25px 0;
+                font-size: 0.9em;
+                font-family: Rubik-Medium;
+                min-width: 400px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
+
+                #system-report thead tr {
+                    background-color: {{accent_color}};
+                    color: {{alt_text_color}};
+                    text-align: left;
+                }
+
+            #system-report th,
+            #system-report td {
+                padding: 12px 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="system-report">
+            <caption>
+                <h2 id="header">
+                    System Report for {{application_name}}
+                </h2>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Online</th>
+                    <th>Device Type</th>
+                    <th>Part Number</th>
+                    <th>Product</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#Collection}}
+                <tr>
+                    <td><strong>{{DeviceName}}</strong></td>
+                    <td>{{formatted-ActiveConnection}}</td>
+                    <td>{{LogicalId.DeviceType}}</td>
+                    <td>{{formatted-AssemblyPartNumber}}</td>
+                    <td>{{Product.ProductId}}</td>
+                </tr>
+                {{/Collection}}
+            </tbody>
+        </table>
+    </body>
+</html>

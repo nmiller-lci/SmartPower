@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:IDS.UI.Shared.Views.Controls;assembly=ids.ui"
+    xmlns:resources="clr-namespace:SmartPower.Resources;assembly=SmartPower"
+    xmlns:xctConverters="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit"
+    xmlns:xctBehaviors="clr-namespace:Xamarin.CommunityToolkit.Behaviors;assembly=Xamarin.CommunityToolkit"
+    xmlns:fontAwesome="clr-namespace:SmartPower.Resources.FontAwesome;assembly=SmartPower"
+    xmlns:xctEffects="clr-namespace:Xamarin.CommunityToolkit.Effects;assembly=Xamarin.CommunityToolkit"
+    xmlns:pages="clr-namespace:SmartPower.UserInterface.Pages;assembly=SmartPower"
+    x:Class="SmartPower.UserInterface.Pages.MainPage"
+    x:DataType="pages:MainPageViewModel"
+    xctEffects:StatusBarEffect.Color="{x:DynamicResource Primary}"
+    xctEffects:StatusBarEffect.Style="LightContent"
+    Title="Main Page" >
+
+    <ContentPage.Resources>
+        <xctConverters:IsNotNullOrEmptyConverter x:Key="IsNotNullConverter"/>
+        <xctConverters:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter"/>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GoToSettingsCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{x:StaticResource FontAwesomeSolid}"
+                                 Glyph="{x:Static fontAwesome:Icon.FACog}"
+                                 Color="{x:DynamicResource OnPrimary}"
+                                 Size="20" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Label Style="{StaticResource labelBold}"
+           HorizontalTextAlignment="Center"
+           Text="Main Page" />
+</ContentPage>

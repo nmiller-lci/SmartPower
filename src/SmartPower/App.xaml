@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+                  xmlns:xctEffects="clr-namespace:Xamarin.CommunityToolkit.Effects;assembly=Xamarin.CommunityToolkit"
+                  xmlns:resources="clr-namespace:SmartPower.Resources;assembly=SmartPower"
+                  xmlns:style="clr-namespace:IDS.UI.Resources.Style;assembly=ids.ui"
+                  x:Class="SmartPower.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <resources:Typography/>
+
+                <resources:Colors PrimaryKeyColor="Black"
+                                  SecondaryKeyColor="#007AFF"           
+                                  TertiaryKeyColor="#7D5260"
+                                  NeutralKeyColor="#615D67"
+                                  NeutralVariantKeyColor="#605D62"
+                                  ErrorKeyColor="#B3261E"
+                                  CurrentAppTheme="Light"
+                                  CurrentAppThemeMode="AppDefined" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
+                <On Platform="Android" Value="FontAwesome5BrandsRegular400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+                <On Platform="Android" Value="FontAwesome5Solid.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+                <On Platform="Android" Value="FontAwesome5ProRegular400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Pro-Regular" />
+            </OnPlatform>
+            
+            <Style TargetType="Frame" ApplyToDerivedTypes="True">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HasShadow" Value="False"/>
+            </Style>
+            <Style x:Key="entryFrame" TargetType="Frame">
+                <Setter Property="CornerRadius" Value = "3"/>
+                <Setter Property="BorderColor" Value = "{x:DynamicResource NeutralVariant70}"/>
+            </Style>
+            <Style x:Key="labelBold" TargetType="Label">
+                <Setter Property="TextColor" Value="{x:DynamicResource OnSurface}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource Surface}"/>
+                <Setter Property="NavigationPage.HasNavigationBar" Value="True" />
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="HasNavigationBar">true</Setter>
+                <Setter Property="BarTextColor" Value="{x:DynamicResource OnPrimary}"/>
+                <Setter Property="BarBackgroundColor" Value="{x:DynamicResource Primary}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>
