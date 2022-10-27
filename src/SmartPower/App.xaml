@@ -16,9 +16,7 @@
                                   TertiaryKeyColor="#7D5260"
                                   NeutralKeyColor="#615D67"
                                   NeutralVariantKeyColor="#605D62"
-                                  ErrorKeyColor="#B3261E"
-                                  CurrentAppTheme="Light"
-                                  CurrentAppThemeMode="AppDefined" />
+                                  ErrorKeyColor="#B3261E" />
             </ResourceDictionary.MergedDictionaries>
 
             <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">

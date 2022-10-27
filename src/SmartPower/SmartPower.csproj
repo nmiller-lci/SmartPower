@@ -113,10 +113,10 @@
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.6.0" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="Handlebars.Net" Version="1.9.5" />
     <PackageReference Include="ZXing.Net.Mobile" Version="3.1.0-beta2" />
